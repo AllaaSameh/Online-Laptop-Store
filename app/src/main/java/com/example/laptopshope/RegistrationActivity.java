@@ -10,6 +10,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     EditText ed_newName, ed_newEmail, ed_newPass, ed_ConfPass;
@@ -26,6 +39,8 @@ public class RegistrationActivity extends AppCompatActivity {
         ed_newPass = findViewById(R.id.ed_newpass);
         ed_ConfPass = findViewById(R.id.ed_conPass);
         btn_submit = findViewById(R.id.btn_submit);
+
+
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +59,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
 
                     pin.apply();
+                    saveToken();
+
 
                     Intent go = new Intent(RegistrationActivity.this, LoginActivity.class);
                     startActivity(go);
@@ -58,5 +75,48 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
+    public void saveToken() {
+        StringRequest task = new StringRequest(Request.Method.POST, VollyData.BASEURL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject object = new JSONObject(response);
+                    int status = object.getInt("status");
+                    if (status == 0) {
+                        String token = object.getString("token");
+                        SharedPreferences data = getSharedPreferences("file", 0);
+                        SharedPreferences.Editor pin = data.edit();
+                        pin.putString("token", token);
+                        pin.apply();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parameter = new HashMap<>();
+
+                return parameter;
+
+            }
+
+        };
+        Volley.newRequestQueue(RegistrationActivity.this).add(task);
+    }
+
 }

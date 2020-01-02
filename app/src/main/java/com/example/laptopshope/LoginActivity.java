@@ -35,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences data = getSharedPreferences("file",0);
                     String email = data.getString("new email","nouser");
                     String pass = data.getString("new pass","no data");
-                    if(email.equals(ed_email.getText().toString()) && pass.equals(ed_pass.getText().toString())) {
+                    String token = data.getString("token","");
+                    if(email.equals(ed_email.getText().toString()) && pass.equals(ed_pass.getText().toString())
+                    && token.equals("")) {
                         Intent go = new Intent(LoginActivity.this, LaptopHomeActivity.class);
                         startActivity(go);
                         finish();
