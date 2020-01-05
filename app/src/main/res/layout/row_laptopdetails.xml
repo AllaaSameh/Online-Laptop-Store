@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Constrains"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tx_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/img"
+        app:layout_constraintStart_toEndOf="@+id/img_home"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.060000002" />
 
@@ -35,8 +35,8 @@
         app:layout_constraintBottom_toTopOf="@+id/Rate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/img"
-        app:layout_constraintTop_toBottomOf="@+id/tx_brand" />
+        app:layout_constraintStart_toEndOf="@+id/img_home"
+        app:layout_constraintTop_toBottomOf="@+id/tx_brandhome" />
 
     <ImageView
         android:id="@+id/img"
@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/img"
+        app:layout_constraintStart_toEndOf="@+id/img_home"
         app:layout_constraintTop_toBottomOf="@+id/tx_price" />
 
     <Button
@@ -90,5 +90,5 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_back"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img" />
+        app:layout_constraintTop_toBottomOf="@+id/img_home" />
 </androidx.constraintlayout.widget.ConstraintLayout>
